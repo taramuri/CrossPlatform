@@ -7,7 +7,12 @@
       <LabName Condition="'$(LabName)' == ''">lab1</LabName>
       <RunProject>$(MSBuildProjectDirectory)\$(LabName)\$(LabName).csproj</RunProject>
       <TestDirectory>$(MSBuildProjectDirectory)\$(LabName).tests</TestDirectory>
+      <TestProject>$(TestDirectory)\$(LabName).tests.csproj</TestProject>
    </PropertyGroup>
+
+   <Target Name="Clean">
+    <RemoveDir Directories="$(OutputPath)" />
+  </Target>
 
    <Target Name="LogPaths">
       <Message Text="MSBuildProjectDirectory: $(MSBuildProjectDirectory)" Importance="high" />
@@ -23,6 +28,12 @@
    <Target Name="Run" DependsOnTargets="Build">
       <Message Text="Running project from: $(RunProject)" Importance="high" />
       <Exec Command="dotnet run --project &quot;$(RunProject)&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\$(LabName)" />
+   </Target>
+
+   <Target Name="Test" DependsOnTargets="LogPaths">
+      <Message Text="Running tests from: $(TestProject)" Importance="high" />
+      <Exec Command="dotnet test &quot;$(TestProject)&quot; --logger &quot;console;verbosity=detailed&quot;" WorkingDirectory="$(TestDirectory)" />
+      <Error Text="Test project file not found: $(TestProject)" Condition="!Exists('$(TestProject)')" />
    </Target>
 
    <Target Name="RunAll">

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 
-class Program
+public class Program
 {
-    static void Main()
+    public static void Main()
     {
         try
         {
@@ -51,10 +51,12 @@ class Program
         return currentDirectory;
     }
 
-    static long CalculateDerangements(int n)
+    public static long CalculateDerangements(int n)
     {
         if (n == 0) return 1;
         if (n == 1) return 0;
+        if (n < 0) throw new ArgumentException("Input must be non-negative.");
+
 
         long[] dp = new long[n + 1];
         dp[0] = 1;
