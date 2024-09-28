@@ -1,0 +1,32 @@
+<Project>
+   <ItemGroup>
+      <ProjectFile Include="lab1\lab1.csproj" />
+   </ItemGroup>
+   
+   <PropertyGroup>
+      <LabName Condition="'$(LabName)' == ''">lab1</LabName>
+      <RunProject>$(MSBuildProjectDirectory)\$(LabName)\$(LabName).csproj</RunProject>
+      <TestDirectory>$(MSBuildProjectDirectory)\$(LabName).tests</TestDirectory>
+   </PropertyGroup>
+
+   <Target Name="LogPaths">
+      <Message Text="MSBuildProjectDirectory: $(MSBuildProjectDirectory)" Importance="high" />
+      <Message Text="RunProject: $(RunProject)" Importance="high" />
+      <Message Text="Project file exists: $([System.IO.File]::Exists($(RunProject)))" Importance="high" />
+   </Target>
+
+   <Target Name="Build" DependsOnTargets="LogPaths">
+      <MSBuild Projects="$(RunProject)" Targets="Restore;Build" Condition="Exists('$(RunProject)')" />
+      <Error Text="Project file not found: $(RunProject)" Condition="!Exists('$(RunProject)')" />
+   </Target>
+
+   <Target Name="Run" DependsOnTargets="Build">
+      <Message Text="Running project from: $(RunProject)" Importance="high" />
+      <Exec Command="dotnet run --project &quot;$(RunProject)&quot;" WorkingDirectory="$(MSBuildProjectDirectory)\$(LabName)" />
+   </Target>
+
+   <Target Name="RunAll">
+      <MSBuild Projects="@(ProjectFile)" Targets="Restore;Build" />
+      <Exec Command="dotnet run --project &quot;%(ProjectFile.Identity)&quot;" />
+   </Target>
+</Project>

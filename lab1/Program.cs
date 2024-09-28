@@ -16,8 +16,7 @@ class Program
         {
             Console.WriteLine($"An error occurred: {ex.Message}");
         }
-        Console.WriteLine("Press any key to exit...");
-        Console.ReadKey();
+
     }
 
     static int ReadInput()
