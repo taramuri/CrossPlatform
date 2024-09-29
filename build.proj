@@ -1,6 +1,7 @@
 <Project>
    <ItemGroup>
       <ProjectFile Include="lab1\lab1.csproj" />
+	   <ProjectFile Include="lab2\lab2.csproj" />
    </ItemGroup>
    
    <PropertyGroup>
