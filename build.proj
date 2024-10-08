@@ -1,14 +1,13 @@
 <Project>
    <ItemGroup>
-      <ProjectFile Include="lab1\lab1.csproj" />
-	   <ProjectFile Include="lab2\lab2.csproj" />
+	   <ProjectFile Include="$(Solution)\*.csproj" />
    </ItemGroup>
    
    <PropertyGroup>
       <LabName Condition="'$(LabName)' == ''">lab1</LabName>
       <RunProject>$(MSBuildProjectDirectory)\$(LabName)\$(LabName).csproj</RunProject>
       <TestDirectory>$(MSBuildProjectDirectory)\$(LabName).tests</TestDirectory>
-      <TestProject>$(TestDirectory)\$(LabName).tests.csproj</TestProject>
+	   <TestProject>$(MSBuildProjectDirectory)\$(LabName).tests\$(LabName).tests.csproj</TestProject>
    </PropertyGroup>
 
    <Target Name="Clean">
@@ -35,10 +34,5 @@
       <Message Text="Running tests from: $(TestProject)" Importance="high" />
       <Exec Command="dotnet test &quot;$(TestProject)&quot; --logger &quot;console;verbosity=detailed&quot;" WorkingDirectory="$(TestDirectory)" />
       <Error Text="Test project file not found: $(TestProject)" Condition="!Exists('$(TestProject)')" />
-   </Target>
-
-   <Target Name="RunAll">
-      <MSBuild Projects="@(ProjectFile)" Targets="Restore;Build" />
-      <Exec Command="dotnet run --project &quot;%(ProjectFile.Identity)&quot;" />
    </Target>
 </Project>
