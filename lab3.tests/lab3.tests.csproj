@@ -26,8 +26,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-
-		<ProjectReference Include="..\lab1\lab1.csproj" />
+		<ProjectReference Include="..\lab3\lab3.csproj" />
 	</ItemGroup>
 
 </Project>

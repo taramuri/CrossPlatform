@@ -4,10 +4,10 @@ using System.Linq;
 
 public class Program
 {
-    const int MAX = 101;
-    const int INF = 10000000;
-    static int[,] g = new int[MAX, MAX];
-    static int n;
+    public const int MAX = 101;
+    public const int INF = 10000000;
+    public static int[,] g = new int[MAX, MAX];
+    public static int n;
 
     public static void Main()
     {
@@ -123,7 +123,7 @@ public class Program
                         g[i, j] = g[i, k] + g[k, j];
     }
 
-    static int FindMaximumShortestDistance()
+    public static int FindMaximumShortestDistance()
     {
         Floyd();
         int maxDistance = 0;
