@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0CD1EF5-EE37-4760-A5D1-D9A5E23DE20B}"
 	ProjectSection(SolutionItems) = preProject
 		build.proj = build.proj
+		provision-ubuntu.sh = provision-ubuntu.sh
+		provision-windows.sh = provision-windows.sh
+		Vagrantfile.txt = Vagrantfile.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab1.tests", "lab1.tests\lab1.tests.csproj", "{06BCBDFA-AAD3-457D-9B66-79809BD46E1D}"
@@ -18,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab2.tests", "lab2.tests\la
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab3", "lab3\lab3.csproj", "{CF191A63-82FA-4666-A7A4-F2CB4CF175CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab3.tests", "lab3.tests\lab3.tests.csproj", "{F26FEAA9-5564-4913-B9C2-B4F3A81A4090}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab3.tests", "lab3.tests\lab3.tests.csproj", "{F26FEAA9-5564-4913-B9C2-B4F3A81A4090}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab4", "lab4\lab4.csproj", "{07E15029-621B-475A-82AC-F7D90488D9F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +55,10 @@ Global
 		{F26FEAA9-5564-4913-B9C2-B4F3A81A4090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F26FEAA9-5564-4913-B9C2-B4F3A81A4090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F26FEAA9-5564-4913-B9C2-B4F3A81A4090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E15029-621B-475A-82AC-F7D90488D9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E15029-621B-475A-82AC-F7D90488D9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E15029-621B-475A-82AC-F7D90488D9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E15029-621B-475A-82AC-F7D90488D9F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

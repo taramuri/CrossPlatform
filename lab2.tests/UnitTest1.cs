@@ -6,6 +6,7 @@ namespace lab2.tests
     public class ProgramTests
     {
         private readonly ITestOutputHelper output;
+        LabSecond labSecond = new LabSecond();
 
         public ProgramTests(ITestOutputHelper output)
         {
@@ -34,7 +35,7 @@ namespace lab2.tests
             }
 
             // Act
-            int result = Program.FindMaximumSumSubmatrix(matrix, 4, 5);
+            int result = labSecond.FindMaximumSumSubmatrix(matrix, 4, 5);
             output.WriteLine($"Result of FindMaximumSumSubmatrix: {result}");
 
             // Assert
@@ -62,7 +63,7 @@ namespace lab2.tests
             }
 
             // Act
-            int result = Program.FindMaximumSumSubmatrix(matrix, 3, 3);
+            int result = labSecond.FindMaximumSumSubmatrix(matrix, 3, 3);
             output.WriteLine($"Result of FindMaximumSumSubmatrix with all negative values: {result}");
 
             // Assert
@@ -78,7 +79,7 @@ namespace lab2.tests
             output.WriteLine(string.Join(", ", arr));
 
             // Act
-            int result = Program.KadaneAlgorithm(arr);
+            int result = labSecond.KadaneAlgorithm(arr);
             output.WriteLine($"Result of KadaneAlgorithm: {result}");
 
             // Assert
@@ -94,7 +95,7 @@ namespace lab2.tests
             output.WriteLine(string.Join(", ", arr));
 
             // Act
-            int result = Program.KadaneAlgorithm(arr);
+            int result = labSecond.KadaneAlgorithm(arr);
             output.WriteLine($"Result of KadaneAlgorithm with all negative values: {result}");
 
             // Assert

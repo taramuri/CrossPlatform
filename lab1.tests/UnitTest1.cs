@@ -8,6 +8,7 @@ namespace lab1.tests
     public class Tests
     {
         private readonly ITestOutputHelper output;
+        LabFirst labFirst = new LabFirst();
 
         public Tests(ITestOutputHelper output)
         {
@@ -28,7 +29,7 @@ namespace lab1.tests
         public void TestCalculateDerangements(int input, long expected)
         {
             // Act
-            long result = Program.CalculateDerangements(input);
+            long result = labFirst.CalculateDerangements(input);
 
             // Assert
             Xunit.Assert.Equal(expected, result);
@@ -39,7 +40,7 @@ namespace lab1.tests
         public void TestNegativeInput()
         {
             int input = -1;
-            Xunit.Assert.Throws<ArgumentException>(() => Program.CalculateDerangements(input));
+            Xunit.Assert.Throws<ArgumentException>(() => labFirst.CalculateDerangements(input));
         }
 
         [Fact]
@@ -63,7 +64,7 @@ namespace lab1.tests
                 Directory.SetCurrentDirectory(tempDir);
                 output.WriteLine($"Changed current directory to {tempDir}");
 
-                Program.Main();
+                Program1.Main();
                 output.WriteLine("Executed Program.Main()");
 
                 // Assert

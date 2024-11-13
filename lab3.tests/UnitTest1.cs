@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Xunit;
 using Xunit.Abstractions;
+using lab3;
 
 namespace lab3.tests
 {
@@ -11,37 +12,37 @@ namespace lab3.tests
         private readonly int[,]? originalG;
         private readonly int originalN;
         private const int TEST_MAX = 101; 
-
+        LabThird labThird = new LabThird();
         public ProgramTests(ITestOutputHelper output)
         {
             this.output = output;
-            originalG = Program.g?.Clone() as int[,];
-            originalN = Program.n;
+            originalG = labThird.g?.Clone() as int[,];
+            originalN = labThird.n;
         }
 
         [Fact]
         public void TestFindMaximumShortestDistance()
         {
             // Arrange
-            Program.n = 4;
-            Program.g = new int[TEST_MAX, TEST_MAX]; 
+            labThird.n = 4;
+            labThird.g = new int[TEST_MAX, TEST_MAX]; 
             int[,] testMatrix = {
-                { 0, 5, 9, Program.INF },
-                { Program.INF, 0, 2, 8 },
-                { Program.INF, Program.INF, 0, 7 },
-                { 4, Program.INF, Program.INF, 0 }
+                { 0, 5, 9, LabThird.INF },
+                { LabThird.INF, 0, 2, 8 },
+                { LabThird.INF, LabThird.INF, 0, 7 },
+                { 4, LabThird.INF, LabThird.INF, 0 }
             };
 
             // Copy test matrix to Program.g
-            for (int i = 0; i < Program.n; i++)
-                for (int j = 0; j < Program.n; j++)
-                    Program.g[i, j] = testMatrix[i, j];
+            for (int i = 0; i < labThird.n; i++)
+                for (int j = 0; j < labThird.n; j++)
+                    labThird.g[i, j] = testMatrix[i, j];
 
             output.WriteLine("Adjacency matrix used for testing:");
             PrintMatrix();
 
             // Act
-            int result = Program.FindMaximumShortestDistance();
+            int result = labThird.FindMaximumShortestDistance();
             output.WriteLine($"Result of FindMaximumShortestDistance: {result}");
 
             // Assert
@@ -55,14 +56,14 @@ namespace lab3.tests
         public void TestFindMaximumShortestDistance_SingleNode()
         {
             // Arrange
-            Program.n = 1;
-            Program.g = new int[TEST_MAX, TEST_MAX]; 
-            Program.g[0, 0] = 0;
+            labThird.n = 1;
+            labThird.g = new int[TEST_MAX, TEST_MAX]; 
+            labThird.g[0, 0] = 0;
 
             output.WriteLine("Single-node matrix used for testing.");
 
             // Act
-            int result = Program.FindMaximumShortestDistance();
+            int result = labThird.FindMaximumShortestDistance();
             output.WriteLine($"Result of FindMaximumShortestDistance: {result}");
 
             // Assert
@@ -75,18 +76,18 @@ namespace lab3.tests
         public void TestFindMaximumShortestDistance_NoPath()
         {
             // Arrange
-            Program.n = 3;
-            Program.g = new int[TEST_MAX, TEST_MAX]; 
+            labThird.n = 3;
+            labThird.g = new int[TEST_MAX, TEST_MAX]; 
 
-            for (int i = 0; i < Program.n; i++)
-                for (int j = 0; j < Program.n; j++)
-                    Program.g[i, j] = i == j ? 0 : Program.INF;
+            for (int i = 0; i < labThird.n; i++)
+                for (int j = 0; j < labThird.n; j++)
+                    labThird.g[i, j] = i == j ? 0 : LabThird.INF;
 
             output.WriteLine("Matrix with no paths between nodes.");
             PrintMatrix();
 
             // Act
-            int result = Program.FindMaximumShortestDistance();
+            int result = labThird.FindMaximumShortestDistance();
             output.WriteLine($"Result of FindMaximumShortestDistance: {result}");
 
             // Assert
@@ -99,8 +100,8 @@ namespace lab3.tests
         [Fact]
         public void TestFileOperations()
         {
-            var savedG = Program.g?.Clone() as int[,];
-            var savedN = Program.n;
+            var savedG = labThird.g?.Clone() as int[,];
+            var savedN = labThird.n;
 
             // Arrange
             string tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -121,7 +122,7 @@ namespace lab3.tests
                 Environment.CurrentDirectory = tempDir;
                 output.WriteLine($"Changed current directory to {tempDir}");
 
-                Program.Main();
+                Program3.Main();
                 output.WriteLine("Executed Program.Main()");
 
                 Assert.True(File.Exists(outputPath), $"OUTPUT.txt does not exist at {outputPath}");
@@ -131,8 +132,8 @@ namespace lab3.tests
             }
             finally
             {
-                Program.g = savedG;
-                Program.n = savedN;
+                labThird.g = savedG;
+                labThird.n = savedN;
 
                 Environment.CurrentDirectory = originalDirectory;
                 output.WriteLine($"Restored current directory to {originalDirectory}");
@@ -146,12 +147,12 @@ namespace lab3.tests
 
         private void PrintMatrix()
         {
-            for (int i = 0; i < Program.n; i++)
+            for (int i = 0; i < labThird.n; i++)
             {
                 string row = "";
-                for (int j = 0; j < Program.n; j++)
+                for (int j = 0; j < labThird.n; j++)
                 {
-                    row += (Program.g[i, j] == Program.INF ? "INF" : Program.g[i, j].ToString()) + " ";
+                    row += (labThird.g[i, j] == LabThird.INF ? "INF" : labThird.g[i, j].ToString()) + " ";
                 }
                 output.WriteLine(row.Trim());
             }
@@ -161,9 +162,9 @@ namespace lab3.tests
         {
             if (originalG != null)
             {
-                Program.g = originalG.Clone() as int[,];
+                labThird.g = originalG.Clone() as int[,];
             }
-            Program.n = originalN;
+            labThird.n = originalN;
         }
     }
 }
