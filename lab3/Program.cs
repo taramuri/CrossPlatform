@@ -1,6 +1,6 @@
 ﻿using lab3;
 using System;
-using System.IO;
+using System.IO;dotnet nuget push bin/Debug/THolub.1.0.0.nupkg --source D:\CPP\NuGetLocal
 using System.Linq;
 
 public class Program3

@@ -5,6 +5,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+	  <PackageId>THolub</PackageId>
+	  <Version>1.0.0</Version>
+	  <Authors>THolub</Authors>
+	  <Description>Graph algorithms library implementing Floyd-Warshall algorithm</Description>
+
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	  
   </PropertyGroup>
 
   <ItemGroup>
