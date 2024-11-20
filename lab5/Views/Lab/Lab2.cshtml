@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 border-b-2 border-gray-300 pb-4">
+                Лабораторна робота №2
+            </h1>
+        </header>
+
+        <main>
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Умова задачі</h2>
+
+                <div class="space-y-4 text-gray-600">
+                    <h3 class="text-xl font-medium text-gray-800">Варіант 28</h3>
+
+                    <p>
+                        Задано цілий прямокутний масив M×N. Необхідно визначити прямокутну область масиву,
+                        сума елементів якого максимальна.
+                    </p>
+
+                    <p class="font-bold">
+                        Напишіть програму, яка визначить таку область і підрахує суму її елементів.
+                    </p>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Вхідні та вихідні дані</h2>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="text-xl font-medium text-gray-800 mb-2">Вхідні дані</h3>
+                        <p class="text-gray-600">
+                            У вхідному файлі <strong>INPUT.TXT</strong> записані два натуральні числа N і M
+                            (1 ≤ N, M ≤ 100) – кількість рядків і стовпців прямокутної матриці.
+                            Далі йдуть N рядків по M чисел, записаних через пропуск.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium text-gray-800 mb-2">Вихідні дані</h3>
+                        <p class="text-gray-600">
+                            Вихідний файл <strong>OUTPUT.TXT</strong> повинен містити одне ціле число –
+                            суму елементів знайденого прямокутного підмасиву.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Виконання</h2>
+
+                <form method="post" asp-action="Lab2" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2" for="inputData">
+                            Введіть розміри матриці та її елементи:
+                        </label>
+                        <textarea id="inputData"
+                                  name="inputData"
+                                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                  placeholder="Наприклад:&#10;2 3&#10;1 -2 3&#10;4 -5 6"
+                                  rows="5"
+                                  required></textarea>
+                    </div>
+
+                    <button type="submit"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                        Розрахувати
+                    </button>
+                </form>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        @ViewBag.Error
+                    </div>
+                }
+
+                @if (ViewBag.Result != null)
+                {
+                    <div class="mt-6 bg-gray-50 p-4 rounded-md border border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Результат:</h3>
+                        <textarea readonly
+                                  class="w-full bg-white p-3 rounded-md text-gray-800 border border-gray-300"
+                                  rows="2">@ViewBag.Result</textarea>
+                    </div>
+                }
+            </section>
+        </main>
+
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            © 2024 Лабораторні роботи
+        </footer>
+    </div>
+</body>
+</html>
