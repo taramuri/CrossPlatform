@@ -13,21 +13,17 @@ Vagrant.configure("2") do |config|
       v.cpus = 2
     end
 
-    # Synchronize local folder `lab5` with the virtual machine
-    ubuntu.vm.synced_folder ".", "/home/vagrant/lab5"
+    ubuntu.vm.synced_folder "../", "/home/vagrant/CPP"
 
     ubuntu.vm.provision "shell", inline: <<-SHELL
-      # Update and install required packages
       sudo apt-get update
       sudo apt-get install -y wget nginx
 
-      # Install .NET SDK and Runtime
       wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
       sudo dpkg -i packages-microsoft-prod.deb
       sudo apt-get update
       sudo apt-get install -y dotnet-sdk-7.0 aspnetcore-runtime-7.0
 
-      # Configure nginx to proxy to port 5000
       cat <<'EOF' | sudo tee /etc/nginx/sites-available/default
       server {
           listen 80;
@@ -46,23 +42,18 @@ Vagrant.configure("2") do |config|
       }
       EOF
 
-      # Restart nginx to apply changes
       sudo systemctl restart nginx
 
-      # Set environment variable LAB_PATH
-      echo 'export LAB_PATH=/home/vagrant/lab5/lab-files' >> ~/.bashrc
+      echo 'export LAB_PATH=/home/vagrant/CPP/lab5/lab-files' >> ~/.bashrc
       source ~/.bashrc
 
-      # Create directory for lab-files
       mkdir -p /home/vagrant/lab5/lab-files
 
-      # Navigate to MVC project and build
-      cd /home/vagrant/lab5
+      cd lab5
       dotnet build
-      dotnet publish -c Release -o /home/vagrant/lab5/publish
+      dotnet publish -c Release -o /home/vagrant/CPP/lab5/publish
 
-      # Run the application after publishing
-      nohup dotnet /home/vagrant/lab5/publish/YourMvcApp.dll > /home/vagrant/app.log 2>&1 &
+      dotnet /home/vagrant/lab5/publish/lab5.dll > /home/vagrant/CPP/app.log 2>&1 &
     SHELL
   end
 end

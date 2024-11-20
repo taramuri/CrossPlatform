@@ -43,14 +43,25 @@
                 <li>Для авторизації і аутентифікації слід використати сервер, що реалізує OAuth2 (наприклад, IdentityServer4, Okta, Google Identity або інші)</li>
             </ol>
         </section>
-        <section class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Лабораторні роботи</h2>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Лабораторні роботи</h2>
             <ul class="space-y-2">
                 <li><a asp-controller="Labs" asp-action="Lab1" class="link">Лабораторна робота 1</a></li>
                 <li><a asp-controller="Labs" asp-action="Lab2" class="link">Лабораторна робота 2</a></li>
                 <li><a asp-controller="Labs" asp-action="Lab3" class="link">Лабораторна робота 3</a></li>
             </ul>
-        </section>
+            </section>
+        }
+        else
+        {
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <p class="font-bold">
+                    Авторизуйтесь, щоб отримати доступ до лабораторних робіт.
+                </p>
+            </section>
+        }
     </div>
 </body>
 </html>
