@@ -1,12 +1,10 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using lab1;
+﻿using lab1;
 using lab2;
 using lab3;
 
-namespace lab5
+namespace LabLibrary
 {
-    public class LabsRunner
+    public class LabRunner
     {
         private readonly string _lab;
         private readonly string _solutionRoot;
@@ -14,7 +12,7 @@ namespace lab5
         private readonly LabSecond _labSecond;
         private readonly LabThird _labThird;
 
-        public LabsRunner(string lab)
+        public LabRunner(string lab)
         {
             _lab = lab;
             _solutionRoot = GetSolutionRootPath();

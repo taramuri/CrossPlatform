@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using LabLibrary;
 
 namespace lab5.Controllers
 {
@@ -17,7 +18,7 @@ namespace lab5.Controllers
         {
             try
             {
-                var labsRunner = new LabsRunner("Lab1");
+                var labsRunner = new LabRunner("Lab1");
                 string result = labsRunner.ProcessData(inputData);
 
                 ViewBag.Result = result;
@@ -43,7 +44,7 @@ namespace lab5.Controllers
         {
             try
             {
-                var labsRunner = new LabsRunner("Lab2");
+                var labsRunner = new LabRunner("Lab2");
                 string result = labsRunner.ProcessData(inputData);
 
                 ViewBag.Result = result;
@@ -69,7 +70,7 @@ namespace lab5.Controllers
         {
             try
             {
-                var labsRunner = new LabsRunner("Lab3");
+                var labsRunner = new LabRunner("Lab3");
                 string result = labsRunner.ProcessData(inputData);
 
                 ViewBag.Result = result;
