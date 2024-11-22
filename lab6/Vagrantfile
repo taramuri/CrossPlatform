@@ -1,0 +1,40 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "bento/ubuntu-22.04"
+    config.vm.network "public_network"
+  
+    config.vm.synced_folder ".", "/vagrant", disabled: false
+  
+    config.vm.network "forwarded_port", guest: 5230, host: 8080
+  
+    config.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get upgrade -y
+  
+      apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+  
+      sudo apt-get install -y postgresql postgresql-contrib
+  
+      sudo systemctl enable postgresql
+      sudo systemctl start postgresql
+  
+      sudo -u postgres psql -c "CREATE DATABASE lab6;"
+      sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'postgres';"
+      sudo -u postgres psql -c "ALTER ROLE postgres SET client_encoding TO 'utf8';"
+      sudo -u postgres psql -c "ALTER ROLE postgres SET default_transaction_isolation TO 'read committed';"
+      sudo -u postgres psql -c "ALTER ROLE postgres SET timezone TO 'UTC';"
+      sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE lab6 TO postgres;"
+  
+      sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = 'localhost'/g" /etc/postgresql/14/main/postgresql.conf.pg_hba
+      echo "host    all             all             127.0.0.1/32            md5" | sudo tee -a /etc/postgresql/14/main/pg_hba.conf
+  
+      sudo systemctl restart postgresql
+  
+      sudo timedatectl set-timezone Asia|UTC
+      
+      cd ../../vagrant/lab6
+      dotnet ef database update
+      
+      cd ../lab5_lab6
+      dotnet run
+    SHELL
+  end
