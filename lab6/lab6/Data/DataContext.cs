@@ -1,5 +1,6 @@
 ﻿using lab6.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace lab6.Data
 {
@@ -133,6 +134,150 @@ namespace lab6.Data
             modelBuilder.Entity<RefDocumentType>()
                 .HasIndex(rdt => rdt.Document_Type_Code)
                 .IsUnique();
+
+            SeedData(modelBuilder);
         }
-    }    
+
+        public void SeedData(ModelBuilder modelBuilder)
+        {
+            // Platforms
+            modelBuilder.Entity<Platform>().HasData(
+                new Platform { Platform_Code = "WEB", Platform_Name = "Web Platform" },
+                new Platform { Platform_Code = "MOB", Platform_Name = "Mobile Platform" }
+            );
+
+            // RefDocumentTypes
+            modelBuilder.Entity<RefDocumentType>().HasData(
+                new RefDocumentType { Document_Type_Code = "INV", Document_Type_Description = "Invoice" },
+                new RefDocumentType { Document_Type_Code = "RCP", Document_Type_Description = "Receipt" }
+            );
+
+            // Suppliers
+            modelBuilder.Entity<Supplier>().HasData(
+                new Supplier { Supplier_ID = 1, Supplier_Name = "Tech Supplier" },
+                new Supplier { Supplier_ID = 2, Supplier_Name = "Service Provider" }
+            );
+
+            // Locations
+            modelBuilder.Entity<Location>().HasData(
+                new Location { Location_ID = 1, Location_Name = "Main Office", Other_Details = "123 Business St" },
+                new Location { Location_ID = 2, Location_Name = "Branch Office", Other_Details = "456 Corporate Ave" }
+            );
+
+            // Staff
+            modelBuilder.Entity<Staff>().HasData(
+                new Staff { Staff_ID = 1, Staff_Name = "John Doe", Other_Details = "john@company.com" },
+                new Staff { Staff_ID = 2, Staff_Name = "Jane Smith", Other_Details = "jane@company.com" }
+            );
+
+            // Customers
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer { Customer_ID = 1, Customer_Name = "Acme Corp", Other_Details = "contact@acme.com" },
+                new Customer { Customer_ID = 2, Customer_Name = "Tech Solutions", Other_Details = "info@techsolutions.com" }
+            );
+
+            // Channels
+            modelBuilder.Entity<Channel>().HasData(
+                new Channel { Channel_ID = 1, Channel_Name = "Online Sales" },
+                new Channel { Channel_ID = 2, Channel_Name = "Direct Sales" }
+            );
+
+            // ProductServices
+            modelBuilder.Entity<ProductService>().HasData(
+                new ProductService
+                {
+                    Prod_Service_Code = "SOFT01",
+                    Prod_Service_Name = "Software License",
+                    Supplier_ID = 1
+                },
+                new ProductService
+                {
+                    Prod_Service_Code = "HARD02",
+                    Prod_Service_Name = "Hardware Support",
+                    Supplier_ID = 2
+                }
+            );
+
+            // EventSequences
+            modelBuilder.Entity<EventSequence>().HasData(
+                new EventSequence
+                {
+                    Event_Sequence_ID = 1,
+                    Other_Details = "Sales Process",
+                    Next_Event_Sequence_ID = 2
+                },
+                new EventSequence
+                {
+                    Event_Sequence_ID = 2,
+                    Other_Details = "Delivery Process"
+                }
+            );
+
+            // Events
+            modelBuilder.Entity<Event>().HasData(
+                new Event
+                {
+                    Event_ID = 1,
+                    Other_Details = "Product Sale",
+                    Event_Date_Time = DateTime.Now,
+                    Event_Amount = 1000.50m,
+                    Location_ID = 1,
+                    Staff_ID = 1,
+                    Customer_ID = 1,
+                    Channel_ID = 1,
+                    Artefact_ID = 1,
+                    Event_Sequence_ID = 1
+                }
+            );
+
+            // Payments
+            modelBuilder.Entity<Payment>().HasData(
+                new Payment
+                {
+                    Payment_ID = 1,
+                    Payment_Amount = 1000.50m,
+                    Payment_Date = DateTime.Now,
+                    Event_ID = 1
+                }
+            );
+
+            // Documents
+            modelBuilder.Entity<Document>().HasData(
+                new Document
+                {
+                    Document_ID = 1,
+                    Document_Name = "Sales Invoice",
+                    Event_ID = 1,
+                    Document_Type_Code = "INV"
+                }
+            );
+
+            // Artefacts
+            modelBuilder.Entity<Artefact>().HasData(
+                new Artefact
+                {
+                    Artefact_ID = 1,
+                    Artefact_Name = "Product Sale Artefact"
+                }
+            );
+
+            // CustomerDataPlatforms
+            modelBuilder.Entity<CustomerDataPlatform>().HasData(
+                new CustomerDataPlatform
+                {
+                    Customer_Name = "1",
+                    Platform_Code = "WEB"
+                }
+            );
+
+            // GenericServices
+            modelBuilder.Entity<GenericService>().HasData(
+                new GenericService
+                {
+                    Service_Code = "CONSULT",
+                    Service_Name = "Consulting Service"
+                }
+            );
+        }
+    }
 }

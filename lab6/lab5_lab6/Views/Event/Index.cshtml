@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Event>
+@using lab6.Models
+
+<h2>Events</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evt in Model)
+        {
+            <tr>
+                <td>@evt.Event_ID</td>
+                <td>@evt.Event_Date_Time</td>
+                <td>@evt.Customer.Customer_Name</td>
+                <td>@evt.Event_Amount</td>
+                <td>
+                    <a asp-action="Details" asp-route-eventId="@evt.Event_ID">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

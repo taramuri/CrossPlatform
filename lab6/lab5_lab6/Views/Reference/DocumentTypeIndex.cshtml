@@ -1,0 +1,28 @@
+﻿@model IEnumerable<RefDocumentType>
+@using lab6.Models
+
+<h2>Document Types</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var type in Model)
+        {
+            <tr>
+                <td>@type.Document_Type_Code</td>
+                <td>@type.Document_Type_Description</td>
+                <td>
+                    <a asp-action="DocumentTypeDetails"
+                       asp-route-documentTypeCode="@type.Document_Type_Code">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

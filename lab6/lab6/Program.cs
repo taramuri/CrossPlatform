@@ -4,26 +4,30 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Вибір бази даних через конфігурацію
+// Configuration of DbContext
 var databaseProvider = builder.Configuration.GetValue<string>("DatabaseProvider");
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var dbHost = "localhost";
+var dbName = "lab6";
 
+// Add DbContext with the correct provider based on runtime configuration
 builder.Services.AddDbContext<DataContext>(options =>
 {
     switch (databaseProvider)
     {
         case "SqlServer":
-            options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"),
-                            npgsqlOptions => npgsqlOptions.EnableRetryOnFailure(
-                                maxRetryCount: 5,
-                                maxRetryDelay: TimeSpan.FromSeconds(30),
-                                errorCodesToAdd: null));
+            connectionString = $"Server={dbHost};Database={dbName};Trusted_Connection=True;TrustServerCertificate=True;";
+            options.UseSqlServer(connectionString);
             break;
         case "Postgres":
-            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+            var dbUser = "postgres";
+            var dbPassword = "postgres";
+            connectionString = $"Host={dbHost};Database={dbName};Username={dbUser};Password={dbPassword};";
+            options.UseNpgsql(connectionString);
             break;
         case "Sqlite":
-            options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+            connectionString = $"Data Source={dbHost};";
+            options.UseSqlite(connectionString);
             break;
         case "InMemory":
             options.UseInMemoryDatabase("EventManagementDb");
@@ -48,5 +52,4 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

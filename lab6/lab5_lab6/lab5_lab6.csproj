@@ -6,10 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+  <UserSecretsId>30d896f5-3bb6-4613-997d-d0071050725b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lab6\lab6.csproj" />
   </ItemGroup>
 
 </Project>

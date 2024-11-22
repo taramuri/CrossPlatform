@@ -12,4 +12,8 @@
     <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\lab6\lab6\lab6.csproj" />
+  </ItemGroup>
+
 </Project>

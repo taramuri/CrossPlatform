@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -16,10 +15,10 @@ namespace lab6.Migrations
                 name: "Artefacts",
                 columns: table => new
                 {
-                    Artefact_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Artefact_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Artefact_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Artefact_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,10 +29,10 @@ namespace lab6.Migrations
                 name: "Channels",
                 columns: table => new
                 {
-                    Channel_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Channel_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Channel_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Channel_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,9 +43,9 @@ namespace lab6.Migrations
                 name: "CustomerDataPlatforms",
                 columns: table => new
                 {
-                    Platform_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Customer_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Customer_Platform_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Platform_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Customer_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Customer_Platform_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,12 +56,12 @@ namespace lab6.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    Customer_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Customer_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Title = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Gender_MFU = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Customer_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Customer_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Gender_MFU = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,14 +72,14 @@ namespace lab6.Migrations
                 name: "EventSequences",
                 columns: table => new
                 {
-                    Event_Sequence_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Next_Event_Sequence_ID = table.Column<int>(type: "integer", nullable: true),
-                    Event_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Event_Date_Time = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Book_Hotel = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false),
-                    Check_Out_Pay = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false)
+                    Event_Sequence_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Next_Event_Sequence_ID = table.Column<int>(type: "int", nullable: true),
+                    Event_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Event_Date_Time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Book_Hotel = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Check_Out_Pay = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,9 +96,9 @@ namespace lab6.Migrations
                 name: "GenericServices",
                 columns: table => new
                 {
-                    Service_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Service_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Service_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Service_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,10 +109,10 @@ namespace lab6.Migrations
                 name: "Locations",
                 columns: table => new
                 {
-                    Location_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Location_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Location_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Location_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,11 +123,11 @@ namespace lab6.Migrations
                 name: "Platforms",
                 columns: table => new
                 {
-                    Platform_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Platform_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Asset_Mgt = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false),
-                    Hotel = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false)
+                    Platform_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Platform_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Asset_Mgt = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Hotel = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,9 +138,9 @@ namespace lab6.Migrations
                 name: "RefDocumentTypes",
                 columns: table => new
                 {
-                    Document_Type_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Document_Type_Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Document_Type_Category = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false)
+                    Document_Type_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Document_Type_Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Document_Type_Category = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -152,10 +151,10 @@ namespace lab6.Migrations
                 name: "Staff",
                 columns: table => new
                 {
-                    Staff_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Staff_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Staff_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Staff_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -166,10 +165,10 @@ namespace lab6.Migrations
                 name: "Suppliers",
                 columns: table => new
                 {
-                    Supplier_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Supplier_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Supplier_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Supplier_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,21 +179,21 @@ namespace lab6.Migrations
                 name: "Events",
                 columns: table => new
                 {
-                    Event_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Artefact_ID = table.Column<int>(type: "integer", nullable: true),
-                    Channel_ID = table.Column<int>(type: "integer", nullable: false),
-                    Customer_ID = table.Column<int>(type: "integer", nullable: false),
-                    Event_Sequence_ID = table.Column<int>(type: "integer", nullable: true),
-                    Location_ID = table.Column<int>(type: "integer", nullable: false),
-                    Platform_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Service_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Staff_ID = table.Column<int>(type: "integer", nullable: false),
-                    Event_Amount = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
-                    Event_Date_Time = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Booking_Date_From = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Booking_Date_To = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Event_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Artefact_ID = table.Column<int>(type: "int", nullable: true),
+                    Channel_ID = table.Column<int>(type: "int", nullable: false),
+                    Customer_ID = table.Column<int>(type: "int", nullable: false),
+                    Event_Sequence_ID = table.Column<int>(type: "int", nullable: true),
+                    Location_ID = table.Column<int>(type: "int", nullable: false),
+                    Platform_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Service_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Staff_ID = table.Column<int>(type: "int", nullable: false),
+                    Event_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Event_Date_Time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Booking_Date_From = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Booking_Date_To = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -241,10 +240,10 @@ namespace lab6.Migrations
                 name: "ProductServices",
                 columns: table => new
                 {
-                    Prod_Service_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Supplier_ID = table.Column<int>(type: "integer", nullable: false),
-                    Prod_Service_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Prod_Service_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Supplier_ID = table.Column<int>(type: "int", nullable: false),
+                    Prod_Service_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -261,13 +260,13 @@ namespace lab6.Migrations
                 name: "Documents",
                 columns: table => new
                 {
-                    Document_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Document_Type_Code = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Event_ID = table.Column<int>(type: "integer", nullable: false),
-                    Document_Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Document_Text = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Document_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Document_Type_Code = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Event_ID = table.Column<int>(type: "int", nullable: false),
+                    Document_Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Document_Text = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -290,12 +289,12 @@ namespace lab6.Migrations
                 name: "Payments",
                 columns: table => new
                 {
-                    Payment_ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Event_ID = table.Column<int>(type: "integer", nullable: false),
-                    Payment_Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Payment_Amount = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
-                    Other_Details = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    Payment_ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Event_ID = table.Column<int>(type: "int", nullable: false),
+                    Payment_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Payment_Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Other_Details = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {

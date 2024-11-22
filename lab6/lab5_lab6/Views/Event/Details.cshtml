@@ -1,0 +1,16 @@
+﻿@model Event
+@using lab6.Models
+
+<h2>Event Details</h2>
+<dl>
+    <dt>ID</dt>
+    <dd>@Model.Event_ID</dd>
+    <dt>Date</dt>
+    <dd>@Model.Event_Date_Time</dd>
+    <dt>Customer</dt>
+    <dd>@Model.Customer.Customer_Name</dd>
+    <dt>Channel</dt>
+    <dd>@Model.Channel.Channel_Name</dd>
+    <dt>Amount</dt>
+    <dd>@Model.Event_Amount</dd>
+</dl>

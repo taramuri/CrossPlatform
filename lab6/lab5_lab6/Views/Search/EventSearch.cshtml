@@ -1,0 +1,55 @@
+﻿@model EventSearchViewModel
+@using lab6.Models
+
+<h2>Event Search</h2>
+<form asp-action="EventSearch" method="post">
+    <div>
+        <label>Start Date</label>
+        <input asp-for="StartDate" type="date" />
+    </div>
+    <div>
+        <label>End Date</label>
+        <input asp-for="EndDate" type="date" />
+    </div>
+    <div>
+        <label>Customers</label>
+        <select asp-for="CustomerIds" asp-items="ViewBag.Customers"
+                multiple class="form-control">
+        </select>
+    </div>
+    <div>
+        <label>Channel Name Starts With</label>
+        <input asp-for="ChannelNamePrefix" />
+    </div>
+    <div>
+        <label>Minimum Event Amount</label>
+        <input asp-for="MinEventAmount" type="number" />
+    </div>
+    <button type="submit">Search</button>
+</form>
+
+@if (Model.SearchResults != null)
+{
+    <h3>Search Results</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model.SearchResults)
+            {
+                <tr>
+                    <td>@result.Event_ID</td>
+                    <td>@result.Event_Date_Time</td>
+                    <td>@result.Customer.Customer_Name</td>
+                    <td>@result.Event_Amount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
